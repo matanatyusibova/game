@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function startGame() {
+            const words = ["methods", "object", "javascript", "datatype", "function"]
+            const word = words [Math.floor(Math.random() * (words.length))]
+
+            let hiddenword = Array(word.length).fill("_")
+            alert (`Word: ${hiddenword.join (" ")}`)
+
+            let lives = 5
+            let guessedLetters = []
+             
+            while (lives>0 && hiddenword.includes("_")) {
+                let guess = prompt("Guess a letter").toLowerCase()
+                if (guessedLetters.includes(guess)) {
+                    alert("You already guessed that letter. Try again!");
+                    continue;
+                    
+                }
+                guessedLetters.push(guess)
+                if (word.includes(guess)) {
+                for (let i = 0; i < word.length; i++) {
+                    if (word[i] === guess) {
+                        hiddenword[i] = guess
+                    }
+                    
+                }
+                
+            } else {
+                lives--;
+                alert (`Wrong guess! Lives left: ${lives}`)
+            }
+
+                
+            }
+            
+            if (!hiddenword.includes("_")) {
+                alert (`Congratulations! You guessed the word: ${word}`)
+                
+            }else {
+                alert (`Game over! The correct word was: ${word}`)
+            }
+            if (confirm("Do you want to play again?")) {
+                startGame()
+                
+            }else {
+                alert (`Thanks for playing!`)
+            }
+           
+        }
+        startGame ()
+       
+    </script>
+</body>
+</html>
