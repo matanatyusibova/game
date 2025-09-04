@@ -18,7 +18,12 @@
             let guessedLetters = []
              
             while (lives>0 && hiddenword.includes("_")) {
-                let guess = prompt("Guess a letter").toLowerCase()
+                let guess = prompt("Guess a letter")
+                if (!guess){
+                    alert ("Your must enter a letter")
+                    continue
+                }
+                guess= guess.toLowerCase()
                 if (guessedLetters.includes(guess)) {
                     alert("You already guessed that letter. Try again!");
                     continue;
